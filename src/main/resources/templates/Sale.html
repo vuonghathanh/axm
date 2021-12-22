@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css-->
+    <link th:href="@{/css/index.css}" rel="stylesheet"/>
+    <!--js-->
+    <script th:src="@{/js/index.js}" ></script>
+</head>
+<body>
+
+<h1 div class = "center">Sale Management</h1>
+<div>
+    <table>
+        <tr>
+            <th>SalesmanID</th>
+            <th>ProductName</th>
+            <th>SalesManName</th>
+            <th>DOS</th>
+        </tr>
+        <tr th:each = "item : ${sales}">
+            <td th:text = "${item.salesmanID}"></td>
+            <td th:text = "${item.product.prodName}"></td>
+            <td th:text = "${item.salesmanName}"></td>
+            <td th:text = "${item.DOS}"></td>
+        </tr>
+    </table>
+</div>
+<div>
+    Total Items : [[${totalItems}]]  -  Page [[${currentPage}]] of [[${totalPages}]]
+</div>
+
+<div>
+   <span th:each="i: ${#numbers.sequence(1,totalPages)}">
+       <a th:href="@{'/Sale/page/' + ${i}}"> [[${i}]] </a> &nbsp;
+   </span>
+</div>
+</body>
+</html>
